@@ -1,0 +1,596 @@
+routine Seeker(InOut Con[20])[integer angle]
+		initial
+			array[20] of integer Neighbours; //0=>никого, 1=> Связист, 2=> Наблюдатель
+			integer Mode; //режим (0-узнавание, 1-я главный, 2-я не главный, 3-я не главный, жду подсчёта, 4 - главный, подсчет, 5-не главный подсчет, 6,7,8- обмен номерами+макс номер, 9-построение таблиц)
+			real LostMessages:=0;
+			real Messages:=0;
+			real LostMessagesPercent:=0;
+			Mode:=0;
+			integer QueueLen := 100;
+			integer MyNumber,N;
+			MyNumber:=-1;
+			integer NodeCount;
+			integer R:=4;
+			integer ans;
+			integer ans2;
+			real deltaTime := 1;
+			integer speed :=4;
+			NodeCount:=0;
+			schedule SayHello in 1;
+			integer i,j,k,tempInt,tempInt2;
+			string strTemp,strTemp2;
+			boolean bTemp,bTemp2,bTemp3;
+			real MySeed,BestSeed;
+			MySeed:=RandomReal();
+			BestSeed:=MySeed;
+			array[20] of real Distances;
+			integer stop:=0;
+
+			array[2]of integer Msg,Msg2;
+
+			integer RecFrom,Father,NCount,iRecordCount;
+			NCount:=0;
+			array[20] of boolean Sent;
+			for i:=0 by 1 to 19 do
+				Sent[i]:=false;
+				Distances[i]:=-1;
+			endf;
+			boolean Found;
+			array[100] of boolean ImFor;
+
+			array [100,4] of real TheTable,RecTable; //0-номер вершины,1-интерфейс,2-номер через кого,3-метрика
+			
+			Print "Наблюдатель, семя="+RealToStr(MySeed);
+
+			array[100] of string Queue;
+			array[5] of string arrStr;
+			array[100] of string arrTemp;
+			array[100] of integer arrIntTemp;
+			integer QueueFilled;
+			QueueFilled:=0;
+			array[4] of real Req;	
+			array[20] of integer Close;
+			integer ij:=0;
+			real Debug:=0;	
+			real realPos;
+			real bestPos;	
+
+		endi
+		
+		event SayHello; //распознать, где кто
+			//Print "event SayHello"; //!!!!
+			out "Hi";// through Con[i];
+			schedule StartDecide in 1;
+		ende
+
+		event;				
+			//Print message + " Mode " + ToStr(Mode); //!!!!
+			if Mode=0 then					//распознавание
+				if (message="Hello")|(message="Hi") then
+					for i:=0 to 19 do
+						case
+						Con[i]:
+							if message="Hello" then
+								Neighbours[i]:=1;
+								NCount:=NCount+1;
+								Print "на выходе "+IntToStr(i)+" Связист";
+							else
+								Neighbours[i]:=2;
+								NCount:=NCount+1;
+								Print "на выходе "+IntToStr(i)+" Наблюдатель";
+							endif
+						endc
+					endf
+				else //кто-то уже начал выбирать главного
+					Mode:=1;
+				endif
+			endif;
+			if Mode=1 then //пока считаем себя круче всех
+				if AbsReal(StrToReal(message)-MySeed)<0.001 then
+					RecFrom:=RecFrom+1;
+					Print "Получил уже от "+IntToStr(RecFrom)+" из "+IntToStr(NCount);
+					if RecFrom=NCount then
+						//да мы и правда круче всех!
+						Schedule Count in 1;
+						Print "Я - главный!"
+					endif;
+				else
+					if StrToReal(message)-MySeed<0.001 then
+						//нашелся кто-то круче
+						Mode:=2;
+						Print "Я проиграл!"
+					endif;
+				endif;
+			endif;
+			if (Mode=6)|(Mode=7)|(Mode=8) then	//рассылаем число вершин и свои номера
+				Print "Mode="+IntToStr(Mode);
+				Msg2:=StrToIntArray(message);
+				i:=0;
+				bTemp:=true;
+				bTemp2:=false;
+				while (i<99)& bTemp do
+					if TheTable[i,0]=-1 then
+						if (TheTable[i,0]=Msg2[0])&(TheTable[i,3]=Msg2[0]) then
+							bTemp2:=true;
+						endif;
+						bTemp:=false;
+					else
+						i:=i+1;
+					endif;
+				endw;
+				if (!bTemp2) then
+					//распознаём откуда пришло
+					for j:=0 to 19 do
+						case
+						Con[j]:
+							//запоминаем номер соседа
+							TheTable[i,0]:=Msg2[0];
+							TheTable[i,1]:=j;
+							TheTable[i,2]:=Msg2[0];
+							TheTable[i,3]:=1;
+							i:=i+1;
+							Print "По выходу "+IntToStr(j)+" находится вершина с номером "+IntToStr(Msg2[0]);
+						endc;
+					endf;
+				endif;
+			endif;
+			if (Mode=8)|(Mode=6)  then
+				RecFrom:=RecFrom+1;
+				//если ото всех уже получили:
+				Print "получил от "+IntToStr(RecFrom)+" из "+IntToStr(NCount);
+				if RecFrom=NCount then
+					//значит отправляем папе
+					if Father!=-1 then
+						Msg[0]:=MyNumber;
+						Msg[1]:=NodeCount;
+						Print " Шлю " + IntArrayToStr(Msg) + " через выход "+IntToStr(Father)+" папе" ;
+						out IntArrayToStr(Msg) through Con[Father];
+					endif;
+					schedule BuildTable in 1;
+				endif;
+			endif;
+			if Mode=7 then	
+				//если это первый раз:
+				//запоминаем число вершин
+				NodeCount:=Msg2[1];
+				//запоминаем папу
+				for j:=0 to 19 do
+					case
+					Con[j]:
+						Father:=j;
+					endc;
+				endf;
+				RecFrom:=1;
+				Mode:=8;
+				Messages:=8;
+				Msg[0]:=MyNumber;
+				Msg[1]:=NodeCount;
+				if RecFrom=NCount then
+					//значит отправляем папе
+					Print " Шлю " + IntArrayToStr(Msg) + " через выход "+IntToStr(Father)+" папе" ;
+					out IntArrayToStr(Msg) through Con[Father];
+					schedule BuildTable in 1;
+				else
+					//всем посылаем
+					Msg[0]:=MyNumber;
+					Msg[1]:=NodeCount;
+					for i:=0 to 19 do
+					if (i!=Father) then
+						Print " Шлю " + IntArrayToStr(Msg) + " через выход "+ToStr(i);
+							out IntArrayToStr(Msg) through Con[i];
+							Print " Всё " + IntArrayToStr(Msg) + " через выход "+ToStr(i);
+						endif;
+					endf;
+				endif;
+			endif;
+			if (Mode=4)|(Mode=5) then
+				RecFrom:=RecFrom+1;
+				if RecFrom=NCount then //всё!
+					Print "Ну вот и посчитались!";
+					if Mode=5 then
+						Print "Передаю по "+ToStr(Father)+" папе";
+						out message through Con[Father];
+						Mode:=7;
+						Messages:=7;
+					else
+						NodeCount:=StrToInt(message);
+						schedule StartShare in 1;
+						Mode:=6;
+						Messages:=6;
+					endif;
+				else
+					for j:=0 to 19 do
+						case 
+						Con[j]:
+							if Sent[j] then
+								Found:=false;
+								for i:=0 to 19 do
+									if (!Found)&(!Sent[i]) then
+										Found:=true;
+										Sent[i]:=true;
+										Print "Передаю по "+IntToStr(i);
+										out message through Con[i];
+									endif;
+								endf;
+							else
+								Sent[j]:=true;
+								Print "Передаю по "+IntToStr(j);
+								out message through Con[j];
+							endif;
+						endc;
+					endf;
+				endif;
+			endif;
+			if Mode=3 then
+				if StrToReal(message)-BestSeed<0.001 then //!!!!!!!!
+					Mode:=2; //ещё кто-то круче
+					Messages:=2;
+					Print "я был не прав!"
+				else //это уже нумерация
+					for i:=0 to 19 do
+						case 
+						Con[i]:
+							Father:=i;
+							Sent[i]:=true;
+						endc;
+					endf;
+					Mode:=5;
+					Messages:=5;
+					MyNumber:=StrToInt(message);
+					Print "Мой номер - "+IntToStr(MyNumber);
+					N:=MyNumber+1;
+					for i:=0 to 99 do 
+						ImFor[i]:=false;
+					endf;
+					//теперь очищаем таблицу
+					for i:=0 to 99 do 
+						TheTable[i,0]:=-1;
+					endf;
+					TheTable[0,0]:=MyNumber;
+					TheTable[0,1]:=-1;
+					TheTable[0,2]:=-1;
+					TheTable[0,3]:=0;
+		
+					j:=1;		
+					RecFrom:=1;
+					
+					if RecFrom=NCount then
+						Print "Вот и посчитались!";
+						Print "Передаю по "+IntToStr(Father)+" папе";
+						out IntToStr(N) through Con[Father];
+						Mode:=7;
+						Messages:=7;
+					else
+						Found:=false;
+						for i:=0 to 19 do
+							if (!Found)&(i!=Father) then
+								Found:=true;
+								Sent[i]:=true;
+								Print "Передаю по "+IntToStr(i);
+								out IntToStr(N) through Con[i];
+							endif;
+						endf;
+					endif; 	
+				endif;
+			endif;
+			if Mode=2 then
+				if AbsReal(StrToReal(message)-BestSeed)<0.001 then
+					RecFrom:=RecFrom+1;
+					Print "Получил уже от "+IntToStr(RecFrom)+" из "+IntToStr(NCount-1);
+					if RecFrom=NCount-1 then
+						Print RealToStr(BestSeed)+" - минимальный!";
+						Print " Шлю " + message + " через выход "+IntToStr(Father)+" папе";
+						out message through Con[Father];
+						Mode:=3;
+						Messages:=3;
+					endif;
+				else
+				if StrToReal(message)-BestSeed <0.001 then
+					for i:=0 to 19 do
+						case
+						Con[i]:
+							Father:=i; //запомним отца 
+						endc;
+					endf;
+					BestSeed:=StrToReal(message);
+					RecFrom:=0;
+					if RecFrom=NCount-1 then
+						Print ToStr(BestSeed)+" - минимальный!";
+						Print " Шлю " + message + " через выход "+ToStr(Father)+" папе";
+						out message through Con[Father];
+						Mode:=3;
+						Messages:=3;
+					else
+						for i:=0 to 19 do
+							if (Father!=i) then
+								Print " Шлю " + message + " через выход "+ToStr(i);
+								out message through Con[i];
+							endif;
+						endf;
+					endif;
+				endif;
+				endif;
+			endif;
+			if Mode=9 then//рассылка таблиц маршрутизации
+				if (!ImFor[N]) then
+					ImFor[N]:=true;
+					Print "получил таблицы для "+ToStr(N);
+					//запоминаем папу
+					for i:=0 to 19 do
+						case
+						Con[i]:
+							Father:=i;
+						endc;
+					endf;
+					//распознаём таблицу
+					RecTable:=StrToReal2DArray(message);
+
+					tempInt2:=-1;
+					bTemp2:=true;
+					j:=0;
+					tempInt:=0;
+					while (tempInt<=99)&bTemp2&(N!=MyNumber) do
+						if TheTable[tempInt,0]!=-1 then
+							if (TheTable[tempInt,0]=N) then
+								tempInt2:=tempInt;
+							endif;
+							tempInt:=tempInt+1;
+						else
+							bTemp2:=false;
+						endif;
+					endw;
+					
+					if (tempInt2 != -1) then
+					bTemp:=true;
+					j:=0;
+					while (j<=99)&bTemp do
+						if RecTable[j,0]!=-1 then
+							if (RecTable[j,0]!=MyNumber)&(RecTable[j,2]!=MyNumber)&(RecTable[j,0]!=N) then
+								bTemp2:=true;
+								bTemp3:=false;
+								k:=0;
+								while (k<tempInt)&bTemp2 do
+									if (TheTable[k,0]=RecTable[j,0]) then
+										bTemp3:=true;
+										bTemp2:=false;
+										if (TheTable[k,3] > TheTable[tempInt2,3]+RecTable[j,3]) then
+											TheTable[k,1]:=TheTable[tempInt2,1];
+											TheTable[k,2]:=TheTable[tempInt2,2];
+											TheTable[k,3]:=TheTable[tempInt2,3]+RecTable[j,3];
+										endif;
+									endif;
+									k:=k+1;
+								endw;
+								if !bTemp3 then
+									TheTable[tempInt,0]:=RecTable[j,0];
+									TheTable[tempInt,1]:=TheTable[tempInt2,1];
+									TheTable[tempInt,2]:=TheTable[tempInt2,2];
+									TheTable[tempInt,3]:=TheTable[tempInt2,3]+RecTable[j,3];
+									tempInt:=tempInt+1;
+								endif;
+							endif;
+							j:=j+1;
+						else
+							bTemp:=false;
+						endif;
+					endw;
+					endif;
+	
+					//рассылаем таблицу дальше
+					for i:=0 to 19 do 
+						if (i!=Father) then
+							out message through Con[i];
+						endif;
+					endf;
+					Schedule incN in 0.5;
+				endif;
+			endif;
+
+			if Mode=10 then //уже работаем
+				if ij>7 then
+					Print "StartWork";
+					Schedule Waiting in 1;
+				endif;
+				Print ToStr(MyNumber)+" Получил сообщение '"+message + "'";
+				if StrContains(message, "|") then
+					arrStr:=Split(message,'|');
+					ans:=StrToInt(arrStr[3]);
+					ans2:=StrToInt(arrStr[4]);
+					if (arrStr[2]="DistTo") & (arrStr[0]="DistFrom") & (ans=MyNumber) then
+						Distances[StrToInt(arrStr[1])]:=ans2-angle;
+						if Distances[StrToInt(arrStr[1])]<0 then
+							Distances[StrToInt(arrStr[1])]:=Distances[StrToInt(arrStr[1])]+360;
+						endif;
+						if Distances[StrToInt(arrStr[1])]>180 then
+							Distances[StrToInt(arrStr[1])]:=360 - Distances[StrToInt(arrStr[1])];
+						endif;
+						Print ToStr(MyNumber)+"Дистанция до "+arrStr[1]+" = " + ToStr(Distances[StrToInt(arrStr[1])]) +" кол-во - " + ToStr(ij);
+						ij:=ij+1;
+					endif
+				endif
+			endif;
+
+		ende
+		
+		event Waiting;
+				schedule FindCloseDistances in 0;
+				ij:=0;
+				Mode:=12;
+				Messages:=12;
+				Schedule Moving in deltaTime;
+		ende
+		
+		event FindCloseDistances;
+			ij:=0;
+			for i:=0 to 19 do
+				if (Distances[i]>0)&(Distances[i]<30) then
+					Close[ij]:=i;
+					ij:=ij+1;
+				endif;
+			endf;
+			Print IntArrayToStr(Close);
+			
+		ende
+		
+		event Moving;
+			stop:=stop+1;
+			if stop>10 then
+				Schedule Stop2 in 1;
+				Mode:=100;
+			else
+				bestPos:=bestPos+speed*deltaTime;
+				realPos:=realPos+speed+1;
+				Print "Moving";
+				Schedule Moving in deltaTime;
+			endif;
+		ende
+		
+		event Stop2;
+			
+		ende
+
+		event StartDecide;
+			//Print "event StartDecide"; //!!!!!!
+			if Mode<=1 then
+				Print "У меня "+ToStr(NCount)+" соседей";
+				Mode:=1;
+				Messages:=1;
+				RecFrom:=0;
+				if RecFrom=NCount then
+					//да мы и правда круче всех!
+					Schedule Count in 1;
+					Print "Я - главный!";
+				else
+					for i:=0 to 19 do
+						//Print "<"+ToStr(i)+">:"+ToStr(Neighbours[i]);
+
+							Print " Шлю " + ToStr(MySeed) + " через выход "+ToStr(i);
+							out ToStr(MySeed) through Con[i];
+					endf;
+				endif;
+			endif;
+		ende
+
+		event StartShare;
+ 			//Print "event StartShare"; //!!!!!!
+			RecFrom:=0;
+			if RecFrom=NCount then
+				//ничего рассылать и не надо, мы единственные
+				schedule StartWork in 1;
+			else
+				Father:=-1;
+				Msg[0]:=MyNumber;
+				Msg[1]:=NodeCount;
+				for i:=0 to 19 do
+
+						Print " Шлю " + IntArrayToStr(Msg) + " через выход "+ToStr(i);
+						out IntArrayToStr(Msg) through Con[i];
+				endf;	
+			endif;
+		ende
+
+		event Count;
+			//Print "event Count"; //!!!!!!
+			Mode:=4;
+			Messages:=4;
+			MyNumber:=0;
+			N:=1;
+			for i:=0 to 99 do 
+				ImFor[i]:=false;
+			endf;
+			//теперь очищаем таблицу и начинаем обход номер раз.
+			for i:=0 to 99 do 
+				TheTable[i,0]:=-1;
+			endf;
+			TheTable[0,0]:=MyNumber;
+			TheTable[0,1]:=-1;
+			TheTable[0,2]:=-1;
+			TheTable[0,3]:=0;
+
+			RecFrom:=0;
+			
+			if RecFrom=NCount then
+				Print "Вот и посчитались!";
+				if NCount = 0 then
+					NodeCount:=N-1;
+					Schedule StartWork in 0.5;
+				else
+					Mode:=6;
+					Messages:=6;
+				endif;
+			else
+				Found:=false;
+				for i:=0 to 19 do
+					if (!Found) then
+						Found:=true;
+						TheTable[N,0]:=N;
+						TheTable[N,1]:=i;
+						TheTable[N,2]:=N;
+						TheTable[N,3]:=1;
+						Sent[i]:=true;
+						Print "Передаю по "+ToStr(i);
+						out ToStr(N) through Con[i];
+					endif;
+				endf;
+			endif; 			
+		ende
+
+		event BuildTable;
+			//Print "event BuildTable"; //!!!!!!
+			Mode:=9;
+			Messages:=9;
+			N:=0;
+			for i:=0 to NodeCount-1 do
+				if (i=MyNumber)|(ImFor[i]) then
+					Schedule SendTables in i+1;
+				endif;
+				ImFor[i]:=false;
+			endf;
+		ende
+
+		event SendTables;
+			//Print "Посылаю таблицу для номера "+ToStr(N);
+			ImFor[N]:=true;
+			for i:=0 to 19 do
+					out Real2DArrayToStr(TheTable) through Con[i];
+			endf;
+			Schedule incN in 0.5;
+		ende
+		
+		event incN;
+			//Print "event incN";
+			N:=N+1;
+			Print ToStr(MyNumber)+" - " + ToStr(N) + "/"+ToStr(NodeCount);
+			if N>=NodeCount then
+				Schedule StartWork in 0.5;
+			endif;
+		ende
+
+		event StartWork;
+			Print "even StartWork";
+			//Print "**************************************";
+			i:=0;
+			bTemp:=true;
+			while (i<99)&bTemp do
+				if (TheTable[i,0]!=-1) then
+					//Print ToStr(TheTable[i,0])+" "+ToStr(TheTable[i,1])+" "+ToStr(TheTable[i,2])+" "+ToStr(TheTable[i,3]);
+					i:=i+1;
+				else
+					bTemp:=false;
+				endif;	
+			endw;
+			//Print "**************************************";
+			iRecordCount := i;
+			Schedule GetDst in 3;
+		ende	
+		event GetDst;
+			Mode:=10;
+			Messages:=10;
+			Print("Узел "+ ToStr(MyNumber) +" угол "+ ToStr(angle));
+			for i:=0 to 19 do
+				if Neighbours[i]=1 then
+					out "GetDist|"+ToStr(MyNumber) through Con[i];
+				endif;
+			endf;
+		ende		
+	endrout

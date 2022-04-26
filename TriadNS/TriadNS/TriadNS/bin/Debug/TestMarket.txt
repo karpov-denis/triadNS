@@ -1,0 +1,62 @@
+routine TestMarket(InOut Con[10])
+ initial
+         integer id;
+         real wallet;
+         array[2] of string ArrStr;
+         integer CountTranPerMar;
+         integer CountMarket;
+         real t;
+         integer i;
+         real parametr;
+         string str;
+         string Tran;
+         t:=1;
+         schedule GenTran in t;         
+ endi
+ event; 
+     ArrStr := Split(message, '|');
+     if ArrStr[0] = "Id" then
+       id := StrToInt(ArrStr[1]);
+       Print "I am market agent"+ArrStr[1];
+     endif;    
+     if ArrStr[0] = "CountTranPerMar" then
+       CountTranPerMar:= StrToInt(ArrStr[1]);
+     endif;  
+     if ArrStr[0] = "CountMarket" then
+       CountMarket:= StrToInt(ArrStr[1]);
+     endif;  
+     if ArrStr[0] = "Wallet" then
+       wallet:= StrToReal(ArrStr[1]);
+     endif; 
+     if ArrStr[0] = "Val" then
+       wallet:=wallet+ StrToReal(ArrStr[1]);
+       Print "Market recieve" + ArrStr[1];
+     endif; 
+ ende
+ event GenTran;
+     t:=2;
+     for i:=0 to 2 do
+       if i!= id then
+          Tran:="Tran|";
+          str:= IntToStr(id);
+          Tran := Tran +str; 
+          Tran := Tran + "|";
+          str := IntToStr(i);
+          Tran := Tran + str;
+          Tran := Tran + "|";
+          parametr:= wallet/100;
+          str:= RealToStr(parametr);
+          Tran := Tran +str; 
+          Tran := Tran + "|";
+          parametr:= parametr/2;
+          wallet:= wallet - parametr;
+          wallet:= wallet - 2*parametr;
+          str:= RealToStr(parametr);
+          Tran := Tran +str; 
+          out Tran through Con[0];
+          Print Tran;
+       endif;
+     endf;
+     schedule GenTran in t;
+ ende
+endrout

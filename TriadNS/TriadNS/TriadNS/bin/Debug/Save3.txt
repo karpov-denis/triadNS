@@ -1,0 +1,211 @@
+routine TestPTQ(InOut Con[10])
+ initial
+         integer CountMarket;
+         integer CountMainer;
+         real CountVerifiedTran;
+         real CountTran;
+         integer Mode;
+         integer CountTranPerT;
+         integer CountTranPerMar;
+         array[4] of real MainerPower;
+         array[4] of real MainerID;
+         array[80] of integer TranI;
+         array[80] of integer TranJ;
+         array[80] of real TranV;
+         array[80] of real TranG;
+         array[80] of integer TranCountV;
+         array[80,4] of boolean SetMainer;
+         array[10] of string ArrStr;
+         string MarId;
+         string str;
+         integer i;
+         integer j;
+         integer k;
+         integer q;
+         integer conMainer;
+         integer IdMainer;
+         integer save;
+         integer pwr;
+         real PerMar;
+         real FirstWallet;
+         integer last;
+         integer CountForVer;
+         integer BlockLength;
+         integer CountForRew;
+         real t;
+         integer MinMainer;
+         integer AvgMainer;
+         integer MaxMainer;
+         integer tran13;
+         real vedro;
+         boolean ved;
+         Mode:=1;
+         t:=2;
+         CountForRew:=2;
+         BlockLength:=2;
+         CountTran :=0;
+         CountForVer :=2;
+         Print "I am PTQ";
+         last :=0;
+         FirstWallet :=1000;
+         CountMarket :=3;
+         CountMainer := 4;
+         CountTranPerT :=6;
+         CountTranPerMar := (integer)(CountTranPerT/CountMarket);
+         for i:=0 to 2 do
+              MarId := IntToStr(i);
+              out "Id|"+MarId through Con[i];
+         endf;
+         for i:=0 to 2 do
+              MarId := IntToStr(CountTranPerMar);
+              out "CountTranPerMar|"+MarId through Con[i];
+              MarId := IntToStr(CountMarket);
+              out "CountMarket|"+MarId through Con[i];
+              MarId := RealToStr(FirstWallet);
+              out "Wallet|"+MarId through Con[i];
+              FirstWallet := FirstWallet + 1000;
+         endf;
+         j:=i;
+         pwr:=1;
+         for i:=0 to 3 do
+              MarId := IntToStr(i);
+              out "Id|"+MarId through Con[j];
+              MarId := IntToStr(pwr);
+              out "Pwr|"+MarId through Con[j];
+              MainerID[i]:=i;
+              MainerPower[i]:=pwr;
+              j:= j+1;
+              pwr:=pwr+1;
+         endf;   
+         schedule ChooseTran in t;
+ endi
+ event;
+    ArrStr := Split(message, '|');
+    if ArrStr[0] = "Tran" then
+       Print "Recieve "+message;
+       TranI[last]:=StrToInt(ArrStr[1]);
+       TranJ[last]:=StrToInt(ArrStr[2]);
+       TranV[last]:=StrToReal(ArrStr[3]);
+       TranG[last]:=StrToReal(ArrStr[4]);
+       TranCountV[last]:=0;
+       for i:=0 to 4 do
+         SetMainer[last,i] := false;
+       endf;
+       last:=last+1;
+       CountTran:=CountTran+1;
+    endif;     
+ ende
+ event ChooseTran;
+   for i:=1 to 80 do
+     k:= last-i-1; 
+     for j:=0 to 80 do       
+        if TranG[j]<TranG[j+1] then
+           vedro:=TranG[j+1];
+           TranG[j+1]:=TranG[j];
+           TranG[j]:=vedro;
+           vedro:=TranV[j+1];
+           TranV[j+1]:=TranV[j];
+           TranV[j]:=vedro;
+           vedro:=(real) TranJ[j+1];
+           TranJ[j+1]:=TranJ[j];
+           TranJ[j]:=(integer) vedro;
+           vedro:=(real) TranI[j+1];
+           TranI[j+1]:=TranI[j];
+           TranI[j]:= (integer) vedro;
+           vedro:=(real) TranCountV[j+1];
+           TranCountV[j+1]:=TranCountV[j];
+           TranCountV[j]:= (integer) vedro;
+           for i:=0 to 4 do
+              ved:= SetMainer[j+1,i];
+              SetMainer[j+1,i] := SetMainer[j,i];
+              SetMainer[j,i] := ved;
+           endf;
+        endif;
+        if j = k then
+          j:=81;
+        endif;
+     endf;
+     k:=last-1;
+     if i = k then
+      i:=81;
+     endif;
+   endf;
+   str:="";
+   for i:=0 to 80 do
+     MarId := RealToStr(TranG[i]);
+     str:=str+MarId;
+     str:=str+" ";
+     if i = k then
+      i:=81;
+     endif;
+   endf;
+   Print str;
+   tran13:= (integer)(last/3);
+   j:=0;
+   conMainer:=CountMainer+CountMarket;
+   IdMainer:=CountMainer;
+   if Mode =1 then
+     for i:=0 to 80 do
+       IdMainer:=IdMainer-1;
+       conMainer:=conMainer-1;
+       for q:=0 to 80 do
+          if j>tran13 then
+            j:=0;
+          endif;
+          while SetMainer[j,IdMainer] do
+            j:=j+1;
+          endw;
+          SetMainer[j,IdMainer] :=true;
+          TranCountV[j]:= TranCountV[j]+1;
+          out "Ver" through Con[conMainer];
+          j:=j+1;
+          if q = (BlockLength-1) then
+            q:=81;
+          endif;
+       endf;
+       if i = (CountMainer-1) then
+        i:=81;
+       endif;
+     endf;
+     for i:=0 to 80 do
+        if TranCountV[i] >= CountForVer then           
+           j:=0;
+           q:=3;
+           while j<CountForRew do
+             if SetMainer[i,q] then
+               j:=j+1;
+               str :=RealToStr(TranG[i]);
+               out "Gas|"+str through Con[q+CountMarket]; 
+             endif;
+             q:=q-1;
+           endw; 
+           str:=RealToStr(TranV[i]);
+           q:=TranJ[i];
+           out "Val|"+str through Con[q];
+           CountVerifiedTran:=CountVerifiedTran+1;
+           j:=i;
+           while j< (last-1)  do
+             TranG[j]:=TranG[j+1];
+             TranV[j]:=TranV[j+1];
+             TranI[j]:=TranI[j+1];
+             TranJ[j]:=TranJ[j+1];
+             TranCountV[j]:=TranCountV[j+1]; 
+             for save:=0 to 3 do
+                SetMainer[j,save]:=SetMainer[j+1,save];
+             endf;
+           endw; 
+           i:=i-1;
+           last:=last-1;   
+        endif;
+        if i = (last -1) then
+          i:=81;
+        endif;
+     endf;
+   endif;
+   if Mode =2 then
+   endif;
+   if Mode =3 then
+   endif;
+   schedule ChooseTran in t;  
+ ende
+endrout

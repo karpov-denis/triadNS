@@ -1,0 +1,32 @@
+routine TestMainer(InOut Con[10])
+ initial
+         integer id;
+         real wallet;
+         integer pwr;
+         real cost;
+         real TotalCost;
+         array[2] of string ArrStr;
+         wallet:=2000;
+         cost:=1;
+         TotalCost:=0;
+ endi
+ event; 
+     ArrStr := Split(message, '|');
+     if ArrStr[0] = "Id" then
+       id := StrToInt(ArrStr[1]);
+       Print "I am mainer agent"+ArrStr[1];
+     endif;  
+     if ArrStr[0] = "Pwr" then
+       pwr:= StrToInt(ArrStr[1]);
+     endif;  
+     if ArrStr[0] = "Ver" then
+        wallet:=wallet-(pwr*cost);
+        TotalCost:= TotalCost+pwr*cost;
+        Print "Verified Tran";
+     endif; 
+     if ArrStr[0] = "Gas" then
+        wallet:=wallet + StrToReal(ArrStr[1]);     
+        Print "Mainer recieve"+ArrStr[1] ;
+     endif; 
+ ende
+endrout

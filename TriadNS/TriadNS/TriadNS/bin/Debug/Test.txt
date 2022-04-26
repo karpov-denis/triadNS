@@ -1,0 +1,14 @@
+routine Test(InOut Con[10])
+ initial
+         integer id;
+         real wallet;
+         real help;
+         schedule SendTransaction in 1;
+         wallet :=500;
+ endi
+ event SendTransaction;
+         Print "Привет";
+         out "1" through Con[1];
+         help :=99;
+ ende
+endrout

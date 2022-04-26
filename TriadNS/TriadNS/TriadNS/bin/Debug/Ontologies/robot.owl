@@ -1,0 +1,1220 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.psu.ru/ontologies/2009/4/ComputerNetwork.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.psu.ru/ontologies/2009/4/ComputerNetwork.owl">
+    <Prefix name="" IRI="http://www.psu.ru/ontologies/2009/4/ComputerNetwork.owl#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="owl2xml" IRI="http://www.w3.org/2006/12/owl2-xml#"/>
+    <Prefix name="TriadNetCommon" IRI="http://www.psu.ru/ontologies/2009/4/TriadNetCommon.owl#"/>
+    <Import>http://www.psu.ru/ontologies/2009/4/TriadNetCommon.owl</Import>
+    <Declaration>
+        <Class IRI="#ComputerNetworkModel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ComputerNetworkModelingCondition"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ComputerNetworkNode"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ComputerNetworkPole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ComputerNetworkRoutine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ComputerNetworkStructure"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Destination"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Enter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Exit"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RClient"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RClientPolus"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RDarlRouter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RDarlRouterPolus"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RRouter"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RRouterPolus"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RServer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RServerPolus"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RWorkstation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RWorkstationPolus"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Robot"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Router"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RouterRoutine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RouterRoutinePolus"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Server"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ServerRoutine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ServerRoutinePole"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Source"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Workstation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkstationRoutine"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WorkstationRoutinePole"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#canConnectedWith"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasAssociatedPole"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#amountOfChannels"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#isRequired"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Con"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Con1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Con2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#QueueLen"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#QueueLen1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#QueueLen2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#RClient1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#RRouter1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#RServer1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#RWorkstation1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Robot"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#T1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#T11"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#T12"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#T13"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#T2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#T21"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#T22"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#T23"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#deltaT"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#deltaT1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#maxQueueLength"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pol1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pol2"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkModel"/>
+        <Class abbreviatedIRI="TriadNetCommon:Model"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkModel"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:hasStructure"/>
+            <Class IRI="#ComputerNetworkStructure"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkModel"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:modelingToCondition"/>
+            <Class IRI="#ComputerNetworkModelingCondition"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkModelingCondition"/>
+        <Class abbreviatedIRI="TriadNetCommon:ModelingCondition"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkNode"/>
+        <Class abbreviatedIRI="TriadNetCommon:Node"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkNode"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:hasPole"/>
+            <Class IRI="#ComputerNetworkPole"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkNode"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:isNodeOf"/>
+            <Class IRI="#ComputerNetworkStructure"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkPole"/>
+        <Class abbreviatedIRI="TriadNetCommon:Pole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkPole"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:isPoleOf"/>
+            <Class IRI="#ComputerNetworkNode"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkRoutine"/>
+        <Class abbreviatedIRI="TriadNetCommon:Routine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkRoutine"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:putsOn"/>
+            <Class IRI="#ComputerNetworkNode"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+        <Class abbreviatedIRI="TriadNetCommon:RoutinePole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#canConnectedWith"/>
+            <Class IRI="#ComputerNetworkRoutine"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkStructure"/>
+        <Class abbreviatedIRI="TriadNetCommon:Structure"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkStructure"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:hasNode"/>
+            <Class IRI="#ComputerNetworkNode"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ComputerNetworkStructure"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:isStructureOf"/>
+            <Class IRI="#ComputerNetworkModel"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Destination"/>
+        <Class IRI="#ComputerNetworkPole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Enter"/>
+        <Class IRI="#ComputerNetworkPole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Exit"/>
+        <Class IRI="#ComputerNetworkPole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RClient"/>
+        <Class IRI="#WorkstationRoutine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RClientPolus"/>
+        <Class IRI="#WorkstationRoutinePole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RClientPolus"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#canConnectedWith"/>
+            <Class IRI="#RClient"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RDarlRouter"/>
+        <Class IRI="#RouterRoutine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RDarlRouterPolus"/>
+        <Class IRI="#RouterRoutinePolus"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RDarlRouterPolus"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#canConnectedWith"/>
+            <Class IRI="#RDarlRouter"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RRouter"/>
+        <Class IRI="#RouterRoutine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RRouterPolus"/>
+        <Class IRI="#RouterRoutinePolus"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RRouterPolus"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#canConnectedWith"/>
+            <Class IRI="#RRouter"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RServer"/>
+        <Class IRI="#ServerRoutine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RServerPolus"/>
+        <Class IRI="#ServerRoutinePole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RServerPolus"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#canConnectedWith"/>
+            <Class IRI="#RServer"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RWorkstation"/>
+        <Class IRI="#WorkstationRoutine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RWorkstationPolus"/>
+        <Class IRI="#WorkstationRoutinePole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RWorkstationPolus"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#canConnectedWith"/>
+            <Class IRI="#RWorkstation"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Robot"/>
+        <Class IRI="#ComputerNetworkNode"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Router"/>
+        <Class IRI="#ComputerNetworkNode"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RouterRoutine"/>
+        <Class IRI="#ComputerNetworkRoutine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RouterRoutine"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:putsOn"/>
+            <Class IRI="#Router"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RouterRoutinePolus"/>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RouterRoutinePolus"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#canConnectedWith"/>
+            <Class IRI="#RouterRoutine"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Server"/>
+        <Class IRI="#ComputerNetworkNode"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ServerRoutine"/>
+        <Class IRI="#ComputerNetworkRoutine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ServerRoutine"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:putsOn"/>
+            <Class IRI="#Server"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ServerRoutinePole"/>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ServerRoutinePole"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#canConnectedWith"/>
+            <Class IRI="#ServerRoutine"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Source"/>
+        <Class IRI="#ComputerNetworkPole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Workstation"/>
+        <Class IRI="#ComputerNetworkNode"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkstationRoutine"/>
+        <Class IRI="#ComputerNetworkRoutine"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkstationRoutine"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="TriadNetCommon:putsOn"/>
+            <Class IRI="#Workstation"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkstationRoutinePole"/>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WorkstationRoutinePole"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#canConnectedWith"/>
+            <Class IRI="#WorkstationRoutine"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+        <NamedIndividual IRI="#Con"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RouterRoutinePolus"/>
+        <NamedIndividual IRI="#Con1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+        <NamedIndividual IRI="#Con2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#QueueLen"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#QueueLen1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#QueueLen2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RClient"/>
+        <NamedIndividual IRI="#RClient1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RDarlRouter"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RRouter"/>
+        <NamedIndividual IRI="#RRouter1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RServer"/>
+        <NamedIndividual IRI="#RServer1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RWorkstation"/>
+        <NamedIndividual IRI="#RWorkstation1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Robot"/>
+        <NamedIndividual IRI="#Robot"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#T1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#T11"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#T12"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#T13"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#T2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#T21"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#T22"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#T23"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#deltaT"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#deltaT1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="TriadNetCommon:RoutineParameter"/>
+        <NamedIndividual IRI="#maxQueueLength"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RServerPolus"/>
+        <NamedIndividual IRI="#pol1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RClientPolus"/>
+        <NamedIndividual IRI="#pol2"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutinePoleOf"/>
+        <NamedIndividual IRI="#Con"/>
+        <NamedIndividual IRI="#RRouter1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutinePoleOf"/>
+        <NamedIndividual IRI="#Con1"/>
+        <NamedIndividual IRI="#RWorkstation1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutinePoleOf"/>
+        <NamedIndividual IRI="#Con2"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#QueueLen1"/>
+        <NamedIndividual IRI="#RRouter1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#QueueLen2"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RClient1"/>
+        <NamedIndividual IRI="#deltaT"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutinePole"/>
+        <NamedIndividual IRI="#RClient1"/>
+        <NamedIndividual IRI="#pol1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+        <NamedIndividual IRI="#QueueLen2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+        <NamedIndividual IRI="#T13"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+        <NamedIndividual IRI="#T23"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutinePole"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+        <NamedIndividual IRI="#Con2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RRouter1"/>
+        <NamedIndividual IRI="#QueueLen1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RRouter1"/>
+        <NamedIndividual IRI="#T11"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RRouter1"/>
+        <NamedIndividual IRI="#T21"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutinePole"/>
+        <NamedIndividual IRI="#RRouter1"/>
+        <NamedIndividual IRI="#Con"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RServer1"/>
+        <NamedIndividual IRI="#deltaT1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RServer1"/>
+        <NamedIndividual IRI="#maxQueueLength"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutinePole"/>
+        <NamedIndividual IRI="#RServer1"/>
+        <NamedIndividual IRI="#pol2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RWorkstation1"/>
+        <NamedIndividual IRI="#T12"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutineParameter"/>
+        <NamedIndividual IRI="#RWorkstation1"/>
+        <NamedIndividual IRI="#T22"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasRoutinePole"/>
+        <NamedIndividual IRI="#RWorkstation1"/>
+        <NamedIndividual IRI="#Con1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#T11"/>
+        <NamedIndividual IRI="#RRouter1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#T12"/>
+        <NamedIndividual IRI="#RWorkstation1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#T13"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#T21"/>
+        <NamedIndividual IRI="#RRouter1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#T22"/>
+        <NamedIndividual IRI="#RWorkstation1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#T23"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#deltaT"/>
+        <NamedIndividual IRI="#RClient1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#deltaT1"/>
+        <NamedIndividual IRI="#RServer1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutineParameterOf"/>
+        <NamedIndividual IRI="#maxQueueLength"/>
+        <NamedIndividual IRI="#RServer1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutinePoleOf"/>
+        <NamedIndividual IRI="#pol1"/>
+        <NamedIndividual IRI="#RClient1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:isRoutinePoleOf"/>
+        <NamedIndividual IRI="#pol2"/>
+        <NamedIndividual IRI="#RServer1"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isRequired"/>
+        <NamedIndividual IRI="#Con"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#Con"/>
+        <Literal>Con[10]</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isRequired"/>
+        <NamedIndividual IRI="#Con1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#Con1"/>
+        <Literal>Con</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isRequired"/>
+        <NamedIndividual IRI="#Con2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#Con2"/>
+        <Literal>Con[10]</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#QueueLen"/>
+        <Literal>QueueLen</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#QueueLen"/>
+        <Literal>10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#QueueLen"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#QueueLen"/>
+        <Literal>Integer</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#QueueLen1"/>
+        <Literal>QueueLen</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#QueueLen1"/>
+        <Literal>10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#QueueLen1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#QueueLen1"/>
+        <Literal>Integer</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#QueueLen2"/>
+        <Literal>QueueLen</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#QueueLen2"/>
+        <Literal>10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#QueueLen2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#QueueLen2"/>
+        <Literal>Integer</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#RClient1"/>
+        <Literal>RClient</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:assemblyPath"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#anyURI">Routines\RDarlRouter.dll</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#RDarlRouter1"/>
+        <Literal>RDarlRouter</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:assemblyPath"/>
+        <NamedIndividual IRI="#RRouter1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#anyURI">Routines\RRouter.dll</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#RRouter1"/>
+        <Literal>RRouter</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#RServer1"/>
+        <Literal>RServer</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:assemblyPath"/>
+        <NamedIndividual IRI="#RWorkstation1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#anyURI">Routines\RWorkstation.dll</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#RWorkstation1"/>
+        <Literal>RWorkstation</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:assemblyPath"/>
+        <NamedIndividual IRI="#Robot"/>
+        <Literal>C:\Users\Denis\Desktop\Курсовая\codes\TriadNS (2)\TriadNS\TriadNS\bin\Debug\New.dll</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#Robot"/>
+        <Literal>Robot</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#T1"/>
+        <Literal>T1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#T1"/>
+        <Literal>0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#T1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#T1"/>
+        <Literal>Real</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#T11"/>
+        <Literal>T1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#T11"/>
+        <Literal>0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#T11"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#T11"/>
+        <Literal>Real</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#T12"/>
+        <Literal>T1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#T12"/>
+        <Literal>10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#T12"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#T12"/>
+        <Literal>Real</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#T13"/>
+        <Literal>T1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#T13"/>
+        <Literal>0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#T13"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#T13"/>
+        <Literal>Real</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#T2"/>
+        <Literal>T2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#T2"/>
+        <Literal>5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#T2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#T2"/>
+        <Literal>Real</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#T21"/>
+        <Literal>T2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#T21"/>
+        <Literal>5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#T21"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#T21"/>
+        <Literal>Real</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#T22"/>
+        <Literal>T2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#T22"/>
+        <Literal>0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#T22"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#T22"/>
+        <Literal>Real</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#T23"/>
+        <Literal>T2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#T23"/>
+        <Literal>5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#T23"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#T23"/>
+        <Literal>Real</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#deltaT"/>
+        <Literal>deltaT</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#deltaT"/>
+        <Literal>15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#deltaT"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#deltaT"/>
+        <Literal>Integer</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#deltaT1"/>
+        <Literal>deltaT</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#deltaT1"/>
+        <Literal>5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#deltaT1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#deltaT1"/>
+        <Literal>Integer</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#maxQueueLength"/>
+        <Literal>maxQueueLength</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterDefaultValue"/>
+        <NamedIndividual IRI="#maxQueueLength"/>
+        <Literal>10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterIndex"/>
+        <NamedIndividual IRI="#maxQueueLength"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasParameterType"/>
+        <NamedIndividual IRI="#maxQueueLength"/>
+        <Literal>Integer</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isRequired"/>
+        <NamedIndividual IRI="#pol1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#pol1"/>
+        <Literal>pol</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isRequired"/>
+        <NamedIndividual IRI="#pol2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="TriadNetCommon:hasName"/>
+        <NamedIndividual IRI="#pol2"/>
+        <Literal>pol</Literal>
+    </DataPropertyAssertion>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty abbreviatedIRI="TriadNetCommon:hasAssociatedPole"/>
+    </InverseFunctionalObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#canConnectedWith"/>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#canConnectedWith"/>
+        <Class IRI="#ComputerNetworkRoutine"/>
+    </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#isRequired"/>
+        <Class IRI="#ComputerNetworkRoutinePole"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#amountOfChannels"/>
+        <Datatype abbreviatedIRI="xsd:positiveInteger"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#isRequired"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ComputerNetworkModel</IRI>
+        <Literal>Имитационная модель компьютерной сети.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ComputerNetworkModelingCondition</IRI>
+        <Literal>Условие моделирования для имитационной модели системы массового обслуживания.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ComputerNetworkNode</IRI>
+        <Literal>Вершина модели компьютерной сети.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ComputerNetworkPole</IRI>
+        <Literal>Полюс вершины компьютерной сети.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ComputerNetworkRoutine</IRI>
+        <Literal>Рутина элемента компьютерной сети</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ComputerNetworkStructure</IRI>
+        <Literal>Структура модели компьютерной сети.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Destination</IRI>
+        <Literal>Полюс-место назначения.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Enter</IRI>
+        <Literal>Полюс-вход.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Exit</IRI>
+        <Literal>Полюс-выход.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#RDarlRouter</IRI>
+        <Literal>Алгоритм маршрутизации DARL</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#RRouter</IRI>
+        <Literal>Стандартный алгоритм маршрутизации</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Router</IRI>
+        <Literal>Маршрутизатор</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Server</IRI>
+        <Literal>Сервер</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Source</IRI>
+        <Literal>Полюс-источник.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Workstation</IRI>
+        <Literal>Рабочая станция</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#amountOfChannels</IRI>
+        <Literal>Количество каналов обслуживания, учитываемое в рутине устройства обслуживания.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#canConnectedWith</IRI>
+        <Literal>Семантический тип элемента, с которым устанавливается связь</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#isRequired</IRI>
+        <Literal>Обязательно ли должен быть соединен с другим полюсом</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

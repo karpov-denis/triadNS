@@ -1,0 +1,31 @@
+routine TestPTQ(InOut Con[10])
+ initial
+         integer CountMarket;
+         integer CountMainer;
+         integer CountVerifiedTran;
+         integer CountTran;
+         array[4] of real MainerPower;
+         array[4] of real MainerID;
+         array[80] of integer TranI;
+         array[80] of integer TranJ;
+         array[80] of real TranV;
+         array[80] of real TranG;
+         array[80] of integer TranCountV;
+         string MarId;
+         Print "Я PTQ";
+         CountMarket := 3;
+         integer n := CountMarket-1;
+         for i:=0 to n do
+              MarId := IntToStr(i);
+              out "Id|"+MarId through Con[i];
+         endf;
+         integer n2:= CountMainer-1;
+         for i:=0 to n2 do
+              MarId := IntToStr(i);
+              out "Id|"+MarId through Con[i+CountMarket];
+         endf;
+ endi
+ event;
+         
+ ende
+endrout

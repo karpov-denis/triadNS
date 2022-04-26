@@ -1,0 +1,30 @@
+C:\Users\Georgii\Desktop\Новая папка\TriadNS\TriadNS\bin\Debug\TriadRunner.exe
+C:\Users\Georgii\Desktop\Новая папка\TriadNS\TriadNS\bin\Debug\TriadRunner.pdb
+C:\Users\Georgii\Desktop\Новая папка\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csprojResolveAssemblyReference.cache
+C:\Users\Georgii\Desktop\Новая папка\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.exe
+C:\Users\Georgii\Desktop\Новая папка\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.pdb
+C:\Users\Georgii\Desktop\triad\TriadNS\TriadNS\bin\Debug\TriadRunner.exe
+C:\Users\Georgii\Desktop\triad\TriadNS\TriadNS\bin\Debug\TriadRunner.pdb
+C:\Users\Georgii\Desktop\triad\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csprojResolveAssemblyReference.cache
+C:\Users\Georgii\Desktop\triad\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.exe
+C:\Users\Georgii\Desktop\triad\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.pdb
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS\TriadNS\bin\Debug\TriadRunner.exe
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS\TriadNS\bin\Debug\TriadRunner.pdb
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csprojAssemblyReference.cache
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csproj.CopyComplete
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.exe
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.pdb
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS (2)\TriadNS\TriadNS\bin\Debug\TriadRunner.exe
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS (2)\TriadNS\TriadNS\bin\Debug\TriadRunner.pdb
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csprojAssemblyReference.cache
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csproj.CoreCompileInputs.cache
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csproj.CopyComplete
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.exe
+C:\Users\Vlad\Downloads\TriadNS (2)\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.pdb
+C:\Users\Denis\Desktop\Курсовая\codes\TriadNS (2)\TriadNS\TriadNS\bin\Debug\TriadRunner.exe
+C:\Users\Denis\Desktop\Курсовая\codes\TriadNS (2)\TriadNS\TriadNS\bin\Debug\TriadRunner.pdb
+C:\Users\Denis\Desktop\Курсовая\codes\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csproj.AssemblyReference.cache
+C:\Users\Denis\Desktop\Курсовая\codes\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csproj.CoreCompileInputs.cache
+C:\Users\Denis\Desktop\Курсовая\codes\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.csproj.CopyComplete
+C:\Users\Denis\Desktop\Курсовая\codes\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.exe
+C:\Users\Denis\Desktop\Курсовая\codes\TriadNS (2)\TriadNS\TriadNS\TriadRunner\obj\Debug\TriadRunner.pdb
